@@ -1,19 +1,15 @@
 class Solution {
 public:
-    int maxSubArray(vector<int>& nums) {
-        int maxSum = nums[0];
-        int currentSum = 0;
+    bool canJump(vector<int>& nums) {
+        int goal = nums.size() - 1;
         
-        for (int num : nums) {
-            currentSum += num;
+        for (int i = nums.size() - 2; i >= 0; i--) {
             
-            maxSum = max(maxSum, currentSum);
-            
-            if (currentSum < 0) {
-                currentSum = 0;
+            if (i + nums[i] >= goal) {
+                goal = i;
             }
         }
         
-        return maxSum;
+        return goal == 0;
     }
 };
